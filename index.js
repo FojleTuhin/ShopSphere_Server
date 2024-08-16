@@ -27,11 +27,6 @@ async function run() {
         const productsCollection = client.db("ShopSphere").collection('products');
         const cartsCollection = client.db("ShopSphere").collection('carts');
 
-        // app.get('/products', async (req, res) => {
-        //     const result = await productsCollection.find().toArray();
-        //     res.send(result);
-        // })
-
 
         app.post('/addToCart/:id', async (req, res) => {
             const id = req.params.id;
@@ -109,49 +104,6 @@ async function run() {
                 allProducts: cursor
             });
         })
-
-
-
-
-
-
-
-
-        // Get products with pagination, search, categorization, and sorting
-        // app.get('/products', async (req, res) => {
-        //     try {
-        //         const { search, brand, category, sort, page = 1, minPrice, maxPrice } = req.query;
-
-
-
-
-        //         // Pagination
-        //         const limit = 10;
-        //         const skip = (parseInt(page) - 1) * limit;
-
-
-        //         // Fetch products from MongoDB
-        //         const products = await productsCollection.find(query)
-        //             .sort(sortQuery)
-        //             .skip(skip)
-        //             .limit(limit)
-        //             .toArray();
-
-        //         // Get total count of matching products for pagination
-        //         const totalProducts = await productsCollection.countDocuments(query);
-        //         const totalPages = Math.ceil(totalProducts / limit);
-
-        //         res.send({
-        //             products,
-        //             totalPages,
-        //             currentPage: parseInt(page)
-        //         });
-        //     } catch (error) {
-        //         res.status(500).send({ message: error.message });
-        //     }
-        // });
-
-
 
 
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
