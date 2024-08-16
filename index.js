@@ -106,12 +106,7 @@ async function run() {
         //     try {
         //         const { search, brand, category, sort, page = 1, minPrice, maxPrice } = req.query;
 
-        //         let query = {};
 
-        //         // Filter by search term
-        //         if (search) {
-        //             query.productName = { $regex: search, $options: 'i' }; // Case insensitive search
-        //         }
 
         //         // Filter by brand
         //         if (brand) {
