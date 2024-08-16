@@ -113,17 +113,6 @@ async function run() {
         //         const limit = 10;
         //         const skip = (parseInt(page) - 1) * limit;
 
-        //         // Sorting
-        //         let sortQuery = {};
-        //         if (sort === 'priceLowToHigh') {
-        //             sortQuery.price = 1;
-        //         } else if (sort === 'priceHighToLow') {
-        //             sortQuery.price = -1;
-        //         } else if (sort === 'newestFirst') {
-        //             sortQuery.creationDateTime = -1;
-        //         } else if (sort === 'oldestFirst') {
-        //             sortQuery.creationDateTime = 1;
-        //         }
 
         //         // Fetch products from MongoDB
         //         const products = await productsCollection.find(query)
