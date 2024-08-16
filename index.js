@@ -36,7 +36,14 @@ async function run() {
     app.post('/addToCart/:id', async(req, res)=>{
         const id = req.params.id;
         const query = { _id : new ObjectId(id)};
-        const result = await cartsCollection.insertOne(query);
+        const isExist = await cartsCollection.find(query);
+        if (isExist) {
+            return res.send({
+              message: 'cart already exists', insertedId: null
+            })
+          }
+        const find = await productsCollection.findOne(query);
+        const result = await cartsCollection.insertOne(find);
         res.send(result)
     })
 
