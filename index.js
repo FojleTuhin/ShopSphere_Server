@@ -107,14 +107,7 @@ async function run() {
         //         const { search, brand, category, sort, page = 1, minPrice, maxPrice } = req.query;
 
 
-        //         // Filter by price range
-        //         if (minPrice && maxPrice) {
-        //             query.price = { $gte: parseFloat(minPrice), $lte: parseFloat(maxPrice) };
-        //         } else if (minPrice) {
-        //             query.price = { $gte: parseFloat(minPrice) };
-        //         } else if (maxPrice) {
-        //             query.price = { $lte: parseFloat(maxPrice) };
-        //         }
+
 
         //         // Pagination
         //         const limit = 10;
