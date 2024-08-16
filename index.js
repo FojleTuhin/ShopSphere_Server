@@ -28,17 +28,10 @@ async function run() {
         const cartsCollection = client.db("ShopSphere").collection('carts');
 
 
-        app.post('/addToCart/:id', async (req, res) => {
-            const id = req.params.id;
-            const query = { _id: new ObjectId(id) };
-            const isExist = await cartsCollection.findOne(query);
-            if (isExist) {
-                return res.send({
-                    message: 'cart already exists', insertedId: null
-                })
-            }
-            const find = await productsCollection.findOne(query);
-            const result = await cartsCollection.insertOne(find);
+        app.post('/addToCart', async (req, res) => {
+
+            const newCart = req.body;
+            const result = await cartsCollection.insertOne(newCart);
             res.send(result)
         })
 
@@ -55,7 +48,6 @@ async function run() {
             const minPrice = req.query.minPrice;
             const maxPrice = req.query.maxPrice;
             const page = req.query.page;
-            console.log(page);
 
 
 
