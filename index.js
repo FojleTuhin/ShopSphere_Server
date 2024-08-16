@@ -59,6 +59,8 @@ async function run() {
             const sort = req.query.sort;
             const minPrice = req.query.minPrice;
             const maxPrice = req.query.maxPrice;
+            const page = req.query.page;
+            console.log(page);
 
 
 
@@ -90,8 +92,22 @@ async function run() {
                 query.price = { $lte: parseFloat(maxPrice) };
             }
 
-            const cursor = await productsCollection.find(query).sort(sortQuery).toArray();
-            res.send(cursor);
+
+            // Pagination
+            const limit = 10;
+            const skip = (parseInt(page) - 1) * limit;
+
+            // Get total count of matching products for pagination
+            const totalProducts = await productsCollection.countDocuments(query);
+            const totalPages = Math.ceil(totalProducts / limit);
+
+            const cursor = await productsCollection.find(query).sort(sortQuery).skip(skip).limit(limit).toArray();
+
+            res.send({
+                currentPage: parseInt(page),
+                totalPages,
+                allProducts: cursor
+            });
         })
 
 
