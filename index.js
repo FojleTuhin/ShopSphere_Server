@@ -9,7 +9,7 @@ app.use(cors({
   }))
 
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.z7hla77.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
 
@@ -25,10 +25,19 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     const productsCollection = client.db("ShopSphere").collection('products');
+    const cartsCollection = client.db("ShopSphere").collection('carts');
 
     app.get('/products', async(req, res)=>{
         const result = await productsCollection.find().toArray();
         res.send(result);
+    })
+
+
+    app.post('/addToCart/:id', async(req, res)=>{
+        const id = req.params.id;
+        const query = { _id : new ObjectId(id)};
+        const result = await cartsCollection.insertOne(query);
+        res.send(result)
     })
 
 
